@@ -1,91 +1,62 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+"use client";
+import { useState } from "react";
 
 export default function Home() {
+  const [generatedImage, setGeneratedImage] = useState<string>("");
+  const [prompt, setPrompt] = useState<string>("");
+
+  const generateImage = () => {
+    setGeneratedImage(prompt);
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    <div className="bg-black mt-10 flex items-center justify-center">
+      <main className=" max-w-xl mx-auto">
+        <h1 className="text-white text-3xl font-bold mb-8">
+          Generate your AI Image
+        </h1>
+
+        <section className="max-w-full">
+          <div className="flex items-center">
+            <input
+              type="text"
+              id="prompt"
+              name="prompt"
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              className="rounded-l-lg py-3 px-4 w-full text-gray-300 focus:outline-none"
+              placeholder="Enter your prompt here"
             />
-          </a>
-        </div>
-      </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
+            <button
+              onClick={generateImage}
+              className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 rounded-r-lg py-3 px-4 ml-1 font-semibold"
+            >
+              Generate
+            </button>
+          </div>
+        </section>
 
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+        <section className="mt-8 max-w-full">
+          {!generatedImage && (
+            <div className="flex items-center justify-center border-2 border-dashed border-gray-500 rounded-md w-full p-10">
+              <div className="text-md text-gray-600">
+                Image will be generated here!
+              </div>
+            </div>
+          )}
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+          {generatedImage && (
+            <div className="flex items-center justify-center">
+              <img
+                src={generatedImage}
+                alt="Generated Image"
+                className="w-2/3 rounded-lg hover:scale-105 duration-300"
+              />
+            </div>
+          )}
+        </section>
+      </main>
+    </div>
+  );
 }
