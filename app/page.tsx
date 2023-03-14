@@ -1,11 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ColorRing } from "react-loader-spinner";
 
 export default function Home() {
   const [generatedImage, setGeneratedImage] = useState<string>("");
   const [prompt, setPrompt] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [inferences, setInferences] = useState<any[]>([]);
+  const [activeTooltip, setActiveTooltip] = useState<number>(-1);
 
   const generateImage = async () => {
     setLoading(true);
@@ -37,8 +39,80 @@ export default function Home() {
     // As we just generate 1 image, then get the URI of the first image
     const uri = data.images[0].uri;
     setGeneratedImage(uri);
+    setInferences([...inferences, data]);
 
     setLoading(false);
+  };
+
+  const fetchImages = async () => {
+    setInferences([]);
+
+    const response = await fetch("/api/showcase", {
+      method: "GET",
+    });
+
+    const { data } = await response.json();
+    if (data.error) {
+      window.alert("Error: " + data.error + " " + data.message);
+      return;
+    }
+
+    console.log(data); // <-- List all showcase of this model
+
+    setInferences(data);
+  };
+
+  useEffect(() => {
+    fetchImages();
+  }, []);
+
+  const renderShowcase = () => {
+    return (
+      <section className="mt-16 max-w-full">
+        <h1 className="text-xl font-semibold mb-5">Community showcase</h1>
+
+        <div className="grid grid-cols-2 gap-4 mt-4">
+          {inferences ? (
+            inferences
+              .slice(0)
+              .reverse()
+              .map((i, index) => {
+                const truncatedText = i.prompt
+                  .split(" ")
+                  .splice(0, 20)
+                  .join(" ");
+                const displayText =
+                  i.prompt.length > truncatedText.length
+                    ? `${truncatedText}...`
+                    : truncatedText;
+
+                return (
+                  <div
+                    key={index}
+                    className="relative"
+                    onMouseEnter={() => setActiveTooltip(index)}
+                    onMouseLeave={() => setActiveTooltip(-1)}
+                  >
+                    <img
+                      src={i.images[0] && i.images[0].uri}
+                      className="object-cover w-full h-full rounded-md"
+                    />
+                    {activeTooltip === index && (
+                      <div className="absolute backdrop-blur-sm bg-black/60 w-full text-white text-sm p-2 rounded-t-md z-10 bottom-0 left-0">
+                        {displayText}
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+          ) : (
+            <div className="flex items-center justify-center text-md font-semibold text-gray-300">
+              No images generated for this model yet.
+            </div>
+          )}
+        </div>
+      </section>
+    );
   };
 
   return (
@@ -115,6 +189,8 @@ export default function Home() {
             </div>
           )}
         </section>
+
+        {renderShowcase()}
       </main>
     </div>
   );
