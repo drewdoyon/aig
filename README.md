@@ -1,38 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## How it's built
 
-## Getting Started
+- 🧠 Uses <a href="https://www.tryleap.ai/" target="_blank">Leap</a> to generate AI Image from text through an API.
 
-First, run the development server:
+- ✨ Uses <a href="https://tailwindcss.com/" target="_blank">Tailwind</a> for styling langing page and UI.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- 💻 Uses <a href="https://nextjs.org/" target="_blank">Next.js</a> for building the app.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 🚀 Uses <a href="https://railway.app/" target="_blank">Railway</a> for deployment.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## What we are building
+<a href="https://www.youtube.com/watch?v=PCwBv53Pffk" target="_blank">Demo - AI Image Generator</a>
+<div align="center">
+<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5046effb-45ae-47ed-94c7-0f0040a4fe8b/Screenshot_2023-03-13_at_12_18_54_am.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230315%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230315T002908Z&X-Amz-Expires=86400&X-Amz-Signature=a37b95d6971396b67db8bf8f322f6910380773c84d5a0430c26e182c1716f9ae&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Screenshot_2023-03-13_at_12_18_54_am.jpg%22&x-id=GetObject" width="100%"/>
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/dc6815aa-d257-4840-8d5b-7cd971e3f381/Screenshot_2023-03-13_at_12_37_48_am.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230315%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230315T002857Z&X-Amz-Expires=86400&X-Amz-Signature=a9ac5a5e0d45a28ef7a501ae049f755debd9ada32bbc5b612c722d77c626c4b5&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Screenshot_2023-03-13_at_12_37_48_am.jpg%22&x-id=GetObject" width="100%"/>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Develop this app from scratch
+<a href="https://code4startup.com/ai_chatgpt_art/" target="_blank">Step by step guide</a>
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- 🍿 Module #1: Create NextJS project with Tailwind
+- 🍱 Module #2: Create web page
+- 🤖 Module #3: Create Server API
+- 🎉 Module #4: Generate AI Image
+- 🎖️ Module #5: Display Showcase
+- 🏆 Module #6: Deploy & show the world
